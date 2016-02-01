@@ -9,9 +9,9 @@ OUTPUT_FILE = "/home/pi/speedtest/speeds.csv"
 def test():
 	ts = str(datetime.now())
 	speed_lines = subprocess.Popen("speedtest-cli --simple", shell=True, stdout=subprocess.PIPE).stdout.read().split("\n")
-	ping = " ".join(speed_lines[0].split(" ")[1:])
-	dl = " ".join(speed_lines[1].split(" ")[1:])
-	ul = " ".join(speed_lines[2].split(" ")[1:])
+	ping = speed_lines[0].split(" ")[1]
+	dl = speed_lines[1].split(" ")[1]
+	ul = speed_lines[2].split(" ")[1]
 	line = ", ".join([ts, ping, dl, ul]) + "\r\n"
 
 	with open(OUTPUT_FILE, "a") as speeds_file:
